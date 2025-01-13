@@ -1,5 +1,53 @@
 # Challenge 1 -- Hudi stream to S3
 
+## SETUP
+
+#### Python
+I use uv as the package manager here. the version of python matters for this project and uv ensures its exactly the version i want. 
+
+to get started: 
+
+```
+pip install uv
+```
+
+then, at the root of the repo: 
+
+```
+uv sync
+```
+
+#### Docker
+I use docker here for portability and replication. if you don't have it, download it here: https://docs.docker.com/get-started/get-docker/
+
+Then, in a BASH terminal (i use git bash on windows):
+
+```
+cd challenge1
+```
+
+```
+bash setup_and_run_stream.sh
+```
+
+That will take a minute or two. It prints what's going onto console so you can follow. Once the initial docker containers are running, should be able to see the minio 
+ui at 
+
+http://localhost:9001
+
+once the script fully spins up, there should be data populating in the 'transactions' bucket. (view in Object Browser on the left hand nav menu)
+
+For batch processing (preparing for redshift incremental load):
+
+```
+bash redshift_incremental_batch.sh
+```
+
+that will submit a spark job which will result in a table at "transactions/redshift_stage" in minio.
+
+
+## Summary
+
 I've made a streaming-pipeline-in-a-box. I use kafka, minIO, and spark via docker-compose to ingest and process the simulated transcation data. 
 
 I used minIO because it's s3-based and can be ran locally. essentially an on-premise s3. 
@@ -67,6 +115,10 @@ spark:
 
 
 # Challenge 2 -- dbt Transformations
+
+
+
+
 
 
 
