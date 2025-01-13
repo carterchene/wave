@@ -35,6 +35,10 @@ ui at
 
 http://localhost:9001
 
+sign in with 
+username: minioadmin
+password: minioadmin
+
 once the script fully spins up, there should be data populating in the 'transactions' bucket. (view in Object Browser on the left hand nav menu)
 
 For batch processing (preparing for redshift incremental load):
