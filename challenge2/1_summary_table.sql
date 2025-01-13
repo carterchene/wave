@@ -9,7 +9,7 @@ clean as (
 
   select *
   from trx -- assuming the raw table is called trx
-  where status <> 'Failed'
+  where status <> 'FAILED'
   and customer_id is not null
 )
 
@@ -19,7 +19,7 @@ clean as (
           , count(transaction_id) as total_transactions -- count the transactions 
           , sum(amount) as total_amount -- sum them
           , max(transaction_date) as last_transaction_date -- get the latest date
-  from trx
+  from clean
   group by customer_id 
   having sum(amount) >= 0 -- make sure the total isnt negative
 )
