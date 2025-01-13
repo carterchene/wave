@@ -11,7 +11,7 @@ to get started:
 pip install uv
 ```
 
-then, at the root of the repo: 
+then, at wave/challenge1
 
 ```
 uv sync

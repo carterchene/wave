@@ -23,7 +23,7 @@ docker exec minio mc mb myminio/transactions
 
 # start the stream to kafka
 echo "starting data stream to kafka..."
-python stream_simulator.py &
+uv run stream_simulator.py &
 
 # start the spark streaming job. this will write to minio bucket. takes a few seconds to show up in minio (has to download jars, etc) 
 echo "starting spark streaming job... might take ~30s for the data to show up in the minio bucket"
