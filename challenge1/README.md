@@ -22,7 +22,7 @@ uv sync
 #### Docker
 I use docker here for portability and replication. if you don't have it, download it here: https://docs.docker.com/get-started/get-docker/
 
-Then, in a BASH terminal (i use git bash on windows):
+Then, in a BASH terminal (i use git bash on windows): (beware, the spark job produces *a lot* of logs)
 
 ```
 bash setup_and_run_stream.sh
