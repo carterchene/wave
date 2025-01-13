@@ -10,6 +10,10 @@ I use uv as the package manager here. the version of python matters for this pro
 
 to get started: 
 
+First, open up a git bash terminal (not powershell or cmd). 
+
+Run the following commands:
+
 ```
 cd challenge1
 ```
@@ -42,14 +46,21 @@ password: minioadmin
 
 once the script fully spins up, there should be data populating in the 'transactions' bucket. (view in Object Browser on the left hand nav menu)
 
-For batch processing (preparing for redshift incremental load):
+The script will run forever. Ctrl + C to stop it. 
+
+For batch processing (preparing for redshift incremental load), run: 
 
 ```
 bash redshift_incremental_batch.sh
 ```
 
-that will submit a spark job which will result in a table at "transactions/redshift_stage" in minio.
+that will submit a spark job which will result in a table at "transactions/redshift_stage" in minio. This is a transient job that will end (unlike the streaming job which runs forever). 
 
+To shut everything down, run: 
+
+```
+docker-compose down --rmi all
+```
 
 ## Summary
 
