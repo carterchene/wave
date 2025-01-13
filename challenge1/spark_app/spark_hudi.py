@@ -34,6 +34,7 @@ def main():
         .option("kafka.bootstrap.servers", "kafka:9092") \
         .option("subscribe", "transactions") \
         .option("startingOffsets", "latest") \
+        .option("failOnDataLoss", "false") \
         .load()
 
     # read the json, add two columns: processing_timestamp and partition_date
