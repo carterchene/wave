@@ -1,5 +1,8 @@
 # Challenge 1 -- Hudi stream to S3
 
+## Architecture of solution 
+<img src="image.png" width="1000" alt="Architecture diagram">
+
 ## SETUP
 
 #### Python
@@ -63,7 +66,7 @@ I edited the included supporting code just slightly so that it sends the transac
 my spark_app/spark_hudi.py file is the main streaming spark job. it reads from kafka and writes to a hudi table in minio (s3). 
 
 ## "Prepare the data for incremental loading into a downstream Redshift table."
-with regards to the inceremental load for redshift, my understanding is that the easiest way to get data into redshift is via the copy command, which isn't very flexible. 
+with regards to the inceremental load for redshift, my understanding is that the easiest way to get data into redshift is via the copy command, which isn't very flexible (Theres no built-in incremental option).
 Therefore, i created a second spark batch job that incrementally pulls unloaded hudi table data into a staging layer in the data lake. it does this based off of a "processing_time" column that
 I add in the spark stream. in a real environment, we'd store the processing time everytime we run the prepare_for_redshift_incremental.py batch job. on every run, it that time would be passed 
 to the batch job, so that's only ever reading data that has yet to be loaded to redshift. we'd then use the copy command on that staging area to load to a table in redshift, then merge that incr data to the main redshift table via dbt, stored proc, sqlmesh etc 
